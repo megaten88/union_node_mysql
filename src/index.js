@@ -2,7 +2,11 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const routes = require('./routes/router.js')
+const routes = require('./routes/router')
+const auth = require('./routes/authentication');
+const maintenanceController = require('./routes/maintenance');
+const meatController = require('./routes/meat');
+const dairyController = require('./routes/dairyproducts');
 const handleb = require('express-handlebars');
 const helpers =  require('./lib/handlebars.js');
 //Initialize
@@ -24,6 +28,10 @@ app.use(express.json());
 
 //App Routes
 app.use(routes);
+app.use(auth);
+app.use('/maintenance',maintenanceController);
+app.use('/meat',meatController);
+app.use('/dairyproducts',dairyController);
 //Public Declarations
 app.use(express.static(path.join(__dirname,'public')));
 //Server Starter
