@@ -1,0 +1,37 @@
+{
+  "name": "union_node_mysql",
+  "version": "1.0.0",
+  "description": "Prueba técnica Ryte 2020 Realizado por: Mayra Salazar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/megaten88/union_node_mysql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/megaten88/union_node_mysql/issues"
+  },
+  "homepage": "https://github.com/megaten88/union_node_mysql#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "express-mysql-session": "^2.1.4",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.6.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "timeago.js": "^4.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
