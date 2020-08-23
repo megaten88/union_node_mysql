@@ -15,6 +15,7 @@ app.engine('.hbs',handleb({
     layoutsDir: path.join(app.get('views'),'layouts'),
     partialsDir:path.join(app.get('views'),'partials'),
     extname: '.hbs',
+    helpers: helpers
 }));
 app.set('view engine', '.hbs');
 app.use(express.json());
@@ -24,7 +25,7 @@ app.use(express.json());
 //App Routes
 app.use(routes);
 //Public Declarations
-
+app.use(express.static(path.join(__dirname,'public')));
 //Server Starter
 app.listen(app.get('port'), () => {
     console.log('Server on port', app.get('port'))
