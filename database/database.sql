@@ -34,3 +34,14 @@ CREATE TABLE maintenance(
     indoors BOOLEAN,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE user_activity(
+    id INT(15)NOT NULL AUTO_INCREMENT,
+    user_id INT (10) NOT NULL,
+    table_name VARCHAR(15) NOT NULL,
+    reference_id INT (10) NOT NULL ,
+    change_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
+    action VARCHAR (50) DEFAULT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id)
+);
