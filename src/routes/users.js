@@ -8,7 +8,6 @@ router.get('/createUser',(req,res)=>{
 });
 router.post('/createUser',passport.authenticate('login', { session: false }) ,async (req,res)=>{
     let {username,user_password,firstname,lastname,role} = req.body;
-
     let newRegister = {
         username,
         user_password,
