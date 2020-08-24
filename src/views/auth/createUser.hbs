@@ -1,0 +1,38 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Create User</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/users/createUser" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="firstname" placeholder="Provide Name" id="firstname" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="lastname" placeholder="Provide Lastname" id="lastname">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Provide unique username" id="username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="user_password" placeholder="Provide user password" id="user_password">
+                        </div>
+                        <div class="form-group">
+                            <select class="custom-select" name= "role" id="userRole">
+                                <option selected disabled>Choose...</option>
+                                <option value="admin">Administrator</option>
+                                <option value="consult">Consultant</option>
+                                <option value="seller">Seller</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

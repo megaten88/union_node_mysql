@@ -1,0 +1,25 @@
+<div class="container p-4">
+    <div class="row m-2">
+        {{#each users}}
+            <div class="col-md-3">
+                <div class="card text-center m-1">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-info">
+                            {{username}}
+                        </h3>
+                        <p class="m-1">Fullname: {{firstname}} {{lastname}}</p>
+                        <p class="m-1">Role: {{getRole role}}</p>
+                        <a href="/users/delete/{{id}}" class="btn btn-danger">Delete</a>
+                        <a href="/users/edit/{{id}}" class="btn btn-warning text-light">Edit</a>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>No users  are created.</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

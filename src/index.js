@@ -14,8 +14,12 @@ const bodyParser = require('body-parser');
 const session =  require('express-session');
 const mysqlSession = require('express-mysql-session');
 const {database} = require('./configuration');
+const passport = require('passport');
+
 //Initialize
 const app = express();
+require('./lib/passport');
+require('dotenv').config();
 app.set('port', process.env.PORT||3000);
 app.set('views',path.join(__dirname,'views'))
 app.use(session({
@@ -38,6 +42,8 @@ app.use(bodyParser.urlencoded({
     extended:true
 }));
 app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Global Variables to be Used
 app.use((req,res,next)=>{
@@ -46,7 +52,7 @@ app.use((req,res,next)=>{
 });
 //App Routes
 app.use(routes);
-app.use(auth);
+app.use('/users',auth);
 app.use('/maintenance',maintenanceController);
 app.use('/meat',meatController);
 app.use('/dairyproducts',dairyController);

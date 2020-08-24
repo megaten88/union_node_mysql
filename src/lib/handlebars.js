@@ -8,6 +8,15 @@ const helpers={
     },
     timeago: function(timestamp){
         return format(timestamp)
+    },
+    getRole: function(value){
+        if(value=="admin"){
+            return "Administrator";
+        }else if(value=="sellet"){
+            return "Seller";
+        }else{
+            return "Consultant";
+        }
     }
 };
 module.exports = helpers;

@@ -8,6 +8,7 @@ CREATE TABLE users(
     user_password VARCHAR(50) NOT NULL,
     firstname VARCHAR(25) NOT NULL,
     lastname VARCHAR(25),
+    role VARCHAR (15) NOT NULL,
     PRIMARY KEY (id),
     UNIQUE(username)
 );
