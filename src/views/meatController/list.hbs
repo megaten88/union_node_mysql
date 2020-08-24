@@ -1,19 +1,26 @@
 <div class="container p-4">
-    <div class="row">
+    <a href="/meat/add" class="btn btn-success m-2">Add Meat Product</a>
+    <div class="row m-2">
         {{#each meats}}
             <div class="col-md-3">
-                <div class="card text-center">
+                <div class="card text-center m-1">
                     <div class="card-body">
                         <h3 class="card-title text-uppercase text-info">
                             {{name}}
                         </h3>
                         <p class="m-2">{{isRed type}}</p>
                         <p class="m-1">Lps.{{price}}</p>
-                        <a href="" class="btn btn-danger">Delete</a>
-                        <a href="" class="btn btn-warning text-light"> Edit</a>
+                        <a href="/meat/delete/{{id}}" class="btn btn-danger">Delete</a>
+                        <a href="/meat/edit/{{id}}" class="btn btn-warning text-light">Edit</a>
                     </div>
                 </div>
             </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>No meat products are created.</p>
+            </div>
+        </div>
         {{/each}}
     </div>
 </div>

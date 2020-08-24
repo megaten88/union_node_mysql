@@ -3,19 +3,19 @@
         <div class="col-md-4 mx-auto">
             <div class="card" >
                 <div class="card-body">
-                    <form action="/meat/add" method="POST">
+                    <form action="/meat/edit/{{meat.id}}" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="name" placeholder="Meat Name" id="meatName" autofocus>
+                            <input type="text" value="{{meat.name}}"class="form-control" name="name" placeholder="Meat Name" id="meatName" autofocus>
                         </div>
                         <div class="form-group">
-                            <select class="custom-select" name= "type" id="meatType">
-                                <option selected disabled>Choose...</option>
+                            <select class="custom-select" value="{{meat.type}}" name= "type" id="meatType">
+                                <option disabled>Choose...</option>
                                 <option value="1">Red</option>
                                 <option value="2">White</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="number" step="0.01" class="form-control" name="price" placeholder="Meat Price" id="meatPrice">
+                            <input type="number" value="{{meat.price}}" step="0.01" class="form-control" name="price" placeholder="Meat Price" id="meatPrice">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-success btn-block">Save</button>
