@@ -21,7 +21,7 @@ router.post('/login', async(req,res,done)=>{
             console.log(user_password+", hash: " + savedPassword);
             let validatePassword = await helpers.comparePassword(user_password,savedPassword);
             if(validatePassword){
-                let payload = {sub: user.id, role:user.role}
+                let payload = {sub: user.id, username:user[0].username,role:user.role}
                 let token = jwt.sign(payload, process.env.TOKENIZER, {expiresIn:process.env.JWT_LIFETIME});
                 res.json({
                     mensaje: 'Authenticated',
