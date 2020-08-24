@@ -58,7 +58,7 @@ app.use(auth);
 app.use('/users',users);
 app.use('/maintenance',maintenanceController);
 app.use('/meat',meatController);
-app.use('/dairyproducts',dairyController);
+app.use('/dairy',dairyController);
 //Public Declarations
 app.use(express.static(path.join(__dirname,'public')));
 //Server Starter
