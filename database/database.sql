@@ -5,7 +5,7 @@ USE union_ryte;
 CREATE TABLE users(
     id INT(10) NOT NULL AUTO_INCREMENT,
     username VARCHAR(15) NOT NULL,
-    user_password VARCHAR(50) NOT NULL,
+    user_password VARCHAR(255) NOT NULL,
     firstname VARCHAR(25) NOT NULL,
     lastname VARCHAR(25),
     role VARCHAR (15) NOT NULL,

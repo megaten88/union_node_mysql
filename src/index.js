@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const routes = require('./routes/router')
+const users = require('./routes/users');
 const auth = require('./routes/authentication');
 const maintenanceController = require('./routes/maintenance');
 const meatController = require('./routes/meat');
@@ -47,12 +48,14 @@ app.use(passport.session());
 
 //Global Variables to be Used
 app.use((req,res,next)=>{
-    app.locals.success= req.flash('SUCCESS');
+    app.locals.success= req.flash('SUCCESS')
+    app.locals.error = req.flash('ERROR');
     next();
 });
 //App Routes
 app.use(routes);
-app.use('/users',auth);
+app.use(auth);
+app.use('/users',users);
 app.use('/maintenance',maintenanceController);
 app.use('/meat',meatController);
 app.use('/dairyproducts',dairyController);

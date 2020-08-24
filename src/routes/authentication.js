@@ -1,29 +1,41 @@
 const express = require('express');
 const router = express.Router();
-const helpers = require('../lib/helpers');
 const database = require('../database');
-router.get('/createUser',(req,res)=>{
-    res.render('auth/createUser');
-});
-router.post('/createUser', async (req,res)=>{
-    let {username,user_password,firstname,lastname,role} = req.body;
+const helpers = require('../lib/helpers');
+const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
-    let newRegister = {
-        username,
-        user_password,
-        firstname,
-        lastname,
-        role
+
+router.get('/login',async (req,res)=>{
+    res.render('auth/login.hbs');
+})
+router.post('/login', async(req,res,done)=>{
+    let {username,user_password} = req.body;
+    if(username!=null&&user_password!=null){
+        let user = await database.query("SELECT * FROM users WHERE username = ? " , [username]);
+        if(!user || user.length<1){
+            req.flash('ERROR','No user found');
+            res.redirect('/login');
+        }else{
+            let savedPassword = user[0].user_password;
+            console.log(user_password+", hash: " + savedPassword);
+            let validatePassword = await helpers.comparePassword(user_password,savedPassword);
+            if(validatePassword){
+                let payload = {sub: user.id, role:user.role}
+                let token = jwt.sign(payload, process.env.TOKENIZER, {expiresIn:process.env.JWT_LIFETIME});
+                res.json({
+                    mensaje: 'Authenticated',
+                    token: token
+                });
+                done(null,user);
+            }else{
+                req.flash('ERROR','Incorrect Password');
+                res.redirect('/login');
+            }
+        }
+        
+
     }
-    newRegister.user_password = helpers.encryptPassword(user_password);
-    await database.query('INSERT INTO users set ?',[newRegister]);
-    req.flash('SUCCESS','User was saved successfully');
-    res.redirect('/users');
-});
-
-router.get('/',async (req,res)=>{
-    let users = await database.query('SELECT * FROM users');
-    res.render('auth/list.hbs',{users});
-
+    
 });
 module.exports = router;
