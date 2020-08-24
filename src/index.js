@@ -9,6 +9,7 @@ const meatController = require('./routes/meat');
 const dairyController = require('./routes/dairyproducts');
 const handleb = require('express-handlebars');
 const helpers =  require('./lib/handlebars.js');
+const bodyParser = require('body-parser');
 //Initialize
 const app = express();
 app.set('port', process.env.PORT||3000);
@@ -22,7 +23,11 @@ app.engine('.hbs',handleb({
     helpers: helpers
 }));
 app.set('view engine', '.hbs');
-app.use(express.json());
+app.use(bodyParser.urlencoded({
+    extended:true
+}));
+app.use(bodyParser.json());
+
 
 //Global Variables to be Used
 

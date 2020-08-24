@@ -15,7 +15,7 @@ CREATE TABLE users(
 CREATE TABLE meats(
     id INT(10) NOT NULL AUTO_INCREMENT,
     name VARCHAR(25) NOT NULL,
-    type VARCHAR(1) NOT NULL,
+    type INT(1) NOT NULL DEFAULT 1,
     price FLOAT(15,2),
     PRIMARY KEY (id)
 );
