@@ -12,10 +12,17 @@ const helpers={
     getRole: function(value){
         if(value=="admin"){
             return "Administrator";
-        }else if(value=="sellet"){
+        }else if(value=="seller"){
             return "Seller";
         }else{
             return "Consultant";
+        }
+    },
+    isIndoor: function(value){
+        if(value=="0"){
+            return "Indoor"
+        }else{
+            return "Outdoor"
         }
     }
 };

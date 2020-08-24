@@ -1,0 +1,29 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card" >
+                <div class="card-body">
+                    <form action="/maintenance/add" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="arranged_for" placeholder="Provide Client Name" id="clientName" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmenttime">Appointment (date and time):</label>
+                            <input type="datetime-local" class="form-control" name="dated"  id="timestamp">
+                        </div>
+                        <div class="form-group">
+                            <select class="custom-select" name= "indoors" id="indoorType">
+                                <option selected disabled>Choose...</option>
+                                <option value="0">Indoor</option>
+                                <option value="1">Outdoor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

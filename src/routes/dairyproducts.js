@@ -36,7 +36,7 @@ router.get('/edit/:id', async(req,res)=>{
 });
 router.post('/edit/:id', async(req,res)=>{
     let {id} = req.params;
-    let {name,type,price} = req.body;
+    let {name,price} = req.body;
     let editRegister = {
         name,
         price
