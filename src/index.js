@@ -9,11 +9,22 @@ const meatController = require('./routes/meat');
 const dairyController = require('./routes/dairyproducts');
 const handleb = require('express-handlebars');
 const helpers =  require('./lib/handlebars.js');
+const flash = require('connect-flash');
 const bodyParser = require('body-parser');
+const session =  require('express-session');
+const mysqlSession = require('express-mysql-session');
+const {database} = require('./configuration');
 //Initialize
 const app = express();
 app.set('port', process.env.PORT||3000);
 app.set('views',path.join(__dirname,'views'))
+app.use(session({
+    secret: 'nodesql',
+    resave:false,
+    saveUninitialized:false,
+    store: new mysqlSession(database)
+}));
+app.use(flash());
 app.use(morgan('dev'));
 app.engine('.hbs',handleb({
     defaultLayout: 'main',
@@ -28,9 +39,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-
 //Global Variables to be Used
-
+app.use((req,res,next)=>{
+    app.locals.success= req.flash('SUCCESS');
+    next();
+});
 //App Routes
 app.use(routes);
 app.use(auth);
