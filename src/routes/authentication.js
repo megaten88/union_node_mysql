@@ -12,16 +12,17 @@ router.get('/login',async (req,res)=>{
 router.post('/login', async(req,res,done)=>{
     let {username,user_password} = req.body;
     if(username!=null&&user_password!=null){
-        let user = await database.query("SELECT * FROM users WHERE username = ? " , [username]);
-        if(!user || user.length<1){
+        let users = await database.query("SELECT * FROM users WHERE username = ? " , [username]);
+        if(!users || users.length<1){
             req.flash('ERROR','No user found');
             res.redirect('/login');
         }else{
-            let savedPassword = user[0].user_password;
+            let user = users[0];
+            let savedPassword = user.user_password;
             console.log(user_password+", hash: " + savedPassword);
             let validatePassword = await helpers.comparePassword(user_password,savedPassword);
             if(validatePassword){
-                let payload = {sub: user.id, username:user[0].username,role:user.role}
+                let payload = {sub: user.id, username:user.username,role:user.role}
                 let token = jwt.sign(payload, process.env.TOKENIZER, {expiresIn:process.env.JWT_LIFETIME});
                 res.json({
                     mensaje: 'Authenticated',
