@@ -28,7 +28,7 @@ router.post('/login', async(req,res,done)=>{
                     mensaje: 'Authenticated',
                     token: token
                 });
-                done(null,user);
+                res.redirect('/meats');
             }else{
                 req.flash('ERROR','Incorrect Password');
                 res.redirect('/login');
